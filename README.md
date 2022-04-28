@@ -1,6 +1,6 @@
 # Manifold Learning and Graph Kernels
 
-Third assignment solved in "Artificial Intelligence: Knowledge Representation and planning" course at Ca'Foscari University, check the <a href="">report</a> for a project explanation.
+Third assignment solved in "**Artificial Intelligence: Knowledge Representation and planning**" course at Ca'Foscari University, check the <a href="">report</a> for a project explanation.
 
 ## Description of the project
 
