@@ -28,3 +28,12 @@ def readFromFile(numbers,labelsFile,folder):
     for el in csvreader:
         labels.append(int(el[0]))
     return (graphs,np.array(labels))
+
+def printResults(scores,neighbors,dim):
+    print("Min: "+str(np.min(scores)))
+    print("Mean:"+str(np.mean(scores)))
+    print("Max: "+str(np.max(scores)))
+    if neighbors != 0:
+        print("Neighbors: "+str(neighbors))
+    if dim != 0:
+        print("Dimension: "+str(dim))
