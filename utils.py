@@ -1,5 +1,6 @@
 import csv
 from grakel import Graph
+import numpy as np 
 
 def readFromFile(numbers,labelsFile,folder):
     files = list()
@@ -14,7 +15,7 @@ def readFromFile(numbers,labelsFile,folder):
         rows = []
         for row in csvreader:
                 rows.append(row)
-
+                
         matrix_size = len(rows)
         edges = list()
         for i in range(0,matrix_size):
@@ -26,4 +27,4 @@ def readFromFile(numbers,labelsFile,folder):
     csvreader = csv.reader(file)
     for el in csvreader:
         labels.append(int(el[0]))
-    return (graphs,labels)
+    return (graphs,np.array(labels))
