@@ -1,10 +1,9 @@
 
 import numpy as np
-from numpy.linalg import norm
-
+from numpy import linalg
 
 class ShortestPathKernel():
-    def initialize_paths(self, G):
+    def init(self, G):
         INF_ = float('inf')
         v = G.shape[0]
         dist = G
@@ -12,10 +11,9 @@ class ShortestPathKernel():
         np.fill_diagonal(dist, 0)
         return dist
     
-    def FloydWarshall(self, G):
-        G = G.astype(np.float)
-        dist = self.initialize_paths(G)
-        v = G.shape[0]
+    def FloydWarshall(self, graph):
+        dist = self.init(graph)
+        v = graph.shape[0]
         for k in range(v):
             for i in range(v):
                 for j in range(v):
@@ -23,28 +21,28 @@ class ShortestPathKernel():
         return dist
     
     def shortest_paths(self, matrices):
-        SP = []
+        shortest_paths = []
         for el in matrices:
-            SP.append(self.FloydWarshall(el))
-        return SP
+            shortest_paths.append(self.FloydWarshall(el))
+        return shortest_paths
 
 
     def extract_freq_vector(self, S, delta):
-        F = np.empty([delta+1, 1])
+        freq = np.empty([delta+1, 1])
         for i in range(delta+1):
-            F[i] = np.sum(S == i)
-        return F/norm(F)
+            freq[i] = np.sum(S == i)
+        return freq/linalg.norm(freq)
       
-    def kernel_similarity(self, SP1, SP2):
-        delta = int(np.maximum(np.max(SP1), np.max(SP2)))
-        F1 = self.extract_freq_vector(SP1, delta)
-        F2 = self.extract_freq_vector(SP2, delta)
+    def kernel_similarity(self, path1, path2):
+        delta = int(np.maximum(np.max(path1), np.max(path2)))
+        F1 = self.extract_freq_vector(path1, delta)
+        F2 = self.extract_freq_vector(path2, delta)
         return  np.dot(np.transpose(F1), F2)[0]
     
-    def get_similarities(self, SP_graphs):
-        n = len(SP_graphs)
+    def get_similarities(self, shortest_paths):
+        n = len(shortest_paths)
         K = np.zeros((n, n))
         for i in range(n):
             for j in range(n):
-                K[i,j] = self.kernel_similarity(SP_graphs[i], SP_graphs[j])
+                K[i,j] = self.kernel_similarity(shortest_paths[i], shortest_paths[j])
         return K
