@@ -29,11 +29,18 @@ def readFromFile(numbers,labelsFile,folder):
         labels.append(int(el[0]))
     return (graphs,np.array(labels))
 
-def printResults(scores,neighbors,dim):
-    print("Min: "+str(np.min(scores)))
-    print("Mean:"+str(np.mean(scores)))
-    print("Max: "+str(np.max(scores)))
+def prepareResults(scores,neighbors,dim,labels):
+    res = labels
+    res = res + "\nMin: "+str(np.min(scores))
+    res = res + "\nMean:"+str(np.mean(scores))
+    res = res + "\nMax: "+str(np.max(scores))
     if neighbors != 0:
-        print("Neighbors: "+str(neighbors))
+        res = res + "\nNeighbors: "+str(neighbors)
     if dim != 0:
-        print("Dimension: "+str(dim))
+        res = res + "\nDimension: "+str(dim)
+    return res 
+    
+def writeToFile(stringToWrite):
+    f = open("results.txt", "a")
+    f.write(stringToWrite)
+    f.close()
