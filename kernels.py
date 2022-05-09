@@ -20,7 +20,6 @@ def timeout(signum, frame):
 signal.signal(signal.SIGALRM, timeout)
 
 def run(numbers,label,folder):
-
     (graph,label) = utils.readFromFile(numbers,label,folder)
     adjMatrix = list()
     for el in graph:
