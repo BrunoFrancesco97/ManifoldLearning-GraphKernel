@@ -3,71 +3,71 @@
 Without Manifold Learning
 
 Min: 0.5
-Mean:0.7638888888888888
-Max: 0.8888888888888888
+Mean:0.5333333333333334
+Max: 0.5555555555555556
 Neighbors: -1
 Dimension: -1
 With Manifold Learning
 *** LLE ***
 Best: 
-Min: 0.625
-Mean:0.8027777777777777
-Max: 1.0
-Neighbors: 6
+Min: 0.5
+Mean:0.6152777777777778
+Max: 0.7777777777777778
+Neighbors: 8
 Dimension: 20
 Worst: 
-Min: 0.375
-Mean:0.5097222222222222
+Min: 0.2222222222222222
+Mean:0.4541666666666666
 Max: 0.5555555555555556
-Neighbors: 21
-Dimension: 5
+Neighbors: 2
+Dimension: 19
 With Manifold Learning
 *** ISOMAP ***
 Best: 
-Min: 0.5555555555555556
-Mean:0.8152777777777779
-Max: 1.0
-Neighbors: 30
-Dimension: 18
-Worst: 
-Min: 0.125
-Mean:0.3958333333333333
+Min: 0.5
+Mean:0.5333333333333334
 Max: 0.5555555555555556
-Neighbors: 10
-Dimension: 3
+Neighbors: 2
+Dimension: 2
+Worst: 
+Min: 0.5
+Mean:0.5333333333333334
+Max: 0.5555555555555556
+Neighbors: 2
+Dimension: 2
 ***************SHOCK***************
 Without Manifold Learning
 
-Min: 0.13333333333333333
-Mean:0.44666666666666666
-Max: 0.6666666666666666
+Min: 0.06666666666666667
+Mean:0.11333333333333336
+Max: 0.2
 Neighbors: -1
 Dimension: -1
 With Manifold Learning
 *** LLE ***
 Best: 
-Min: 0.13333333333333333
-Mean:0.3
-Max: 0.4666666666666667
-Neighbors: 29
-Dimension: 19
+Min: 0.0
+Mean:0.14666666666666667
+Max: 0.26666666666666666
+Neighbors: 14
+Dimension: 8
 Worst: 
 Min: 0.0
-Mean:0.06
+Mean:0.013333333333333332
 Max: 0.06666666666666667
-Neighbors: 5
-Dimension: 2
+Neighbors: 24
+Dimension: 12
 With Manifold Learning
 *** ISOMAP ***
 Best: 
-Min: 0.3333333333333333
-Mean:0.5
-Max: 0.7333333333333333
-Neighbors: 21
-Dimension: 17
+Min: 0.06666666666666667
+Mean:0.15333333333333332
+Max: 0.2
+Neighbors: 14
+Dimension: 18
 Worst: 
-Min: 0.13333333333333333
-Mean:0.25333333333333335
-Max: 0.4
+Min: 0.0
+Mean:0.06
+Max: 0.13333333333333333
 Neighbors: 7
-Dimension: 3
+Dimension: 5

@@ -6,18 +6,22 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics.pairwise import pairwise_distances
 import utils as utils
 from shortestpath import ShortestPathKernel
-from timeclass import *
 import signal
 
 clf = SVC(kernel="linear", C = 1.0)
 kernel = ShortestPathKernel()
 kFold = StratifiedKFold(n_splits = 10, shuffle = True) 
 
+class TimeoutException(Exception):  
+    pass
 
 def timeout(signum, frame):   
     raise TimeoutException
 
 signal.signal(signal.SIGALRM, timeout)
+
+
+
 
 def run(numbers,label,folder):
     (graph,label) = utils.readFromFile(numbers,label,folder)
