@@ -44,3 +44,12 @@ def writeToFile(stringToWrite):
     f = open("results.txt", "a")
     f.write(stringToWrite)
     f.close()
+
+def printResults(scores,neighbors,dim):
+    print("Min: "+str(np.min(scores)))
+    print("Mean:"+str(np.mean(scores)))
+    print("Max: "+str(np.max(scores)))
+    if neighbors != 0:
+        print("Neighbors: "+str(neighbors))
+    if dim != 0:
+        print("Dimension: "+str(dim))
