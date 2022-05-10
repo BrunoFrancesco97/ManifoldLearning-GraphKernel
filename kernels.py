@@ -15,10 +15,10 @@ kFold = StratifiedKFold(n_splits = 10, shuffle = True)
 class TimeoutException(Exception):  
     pass
 
-def timeout(signum, frame):   
+"""def timeout(signum, frame):   
     raise TimeoutException
 
-signal.signal(signal.SIGALRM, timeout)
+signal.signal(signal.SIGALRM, timeout)"""
 
 
 
@@ -48,21 +48,17 @@ def manifoldLearning(clf, D, label, kFold, flag):
     i_w = 0
     j_w = 0
     res = ""
-    for i in range(2,31):
-        for j in range(2,21):
+    for i in range(1,51):
+        for j in range(1,51):
             if flag == 0:
                 x_t = manifold.LocallyLinearEmbedding(n_neighbors=i,n_components=j).fit_transform(D)
             else:
                 x_t = manifold.Isomap(n_neighbors=i,n_components=j).fit_transform(D)  
-            try:
-                signal.alarm(10)
-                scores_new = cross_val_score(clf,x_t,label,cv=kFold,n_jobs=-1)
-            except TimeoutException:
-                signal.alarm(0)
-                continue
-            else:
-                signal.alarm(0)
-            if j == 2 and i == 2:
+            #try:
+            scores_new = cross_val_score(clf,x_t,label,cv=kFold,n_jobs=-1)
+            """except TimeoutException:
+                continue"""
+            if j == 1 and i == 1:
                 best = scores_new
                 worst = scores_new
                 i_b = i
