@@ -15,10 +15,9 @@ kFold = StratifiedKFold(n_splits = 10, shuffle = True)
 class TimeoutException(Exception):  
     pass
 
-"""def timeout(signum, frame):   
+def timeout(signum, frame):   
     raise TimeoutException
-
-signal.signal(signal.SIGALRM, timeout)"""
+signal.signal(signal.SIGALRM, timeout)
 
 
 
@@ -38,7 +37,10 @@ def run(numbers,label,folder):
     res = res + manifoldLearning(clf,distances,label,kFold,0) #LLE
     res = res + manifoldLearning(clf,distances,label,kFold,1) #ISOMAP
     utils.writeToFile(res)
-    print("** END! CHECK THE RESULT FILE! **")
+    if folder == "PPI":
+        print("** Analysis over PPI dataset are done, now SHOCK dataset is performed. **")
+    else:
+        print("** END! CHECK RESULTS.txt FILE! **")
 
 def manifoldLearning(clf, D, label, kFold, flag): 
     best = None 
@@ -48,17 +50,21 @@ def manifoldLearning(clf, D, label, kFold, flag):
     i_w = 0
     j_w = 0
     res = ""
-    for i in range(1,51):
-        for j in range(1,51):
+    for i in range(2,31):
+        for j in range(2,21):
             if flag == 0:
                 x_t = manifold.LocallyLinearEmbedding(n_neighbors=i,n_components=j).fit_transform(D)
             else:
                 x_t = manifold.Isomap(n_neighbors=i,n_components=j).fit_transform(D)  
-            #try:
-            scores_new = cross_val_score(clf,x_t,label,cv=kFold,n_jobs=-1)
-            """except TimeoutException:
-                continue"""
-            if j == 1 and i == 1:
+            try:
+                signal.alarm(5)
+                scores_new = cross_val_score(clf,x_t,label,cv=kFold,n_jobs=-1)
+            except TimeoutException:
+                signal.alarm(0)
+                continue
+            else:
+                signal.alarm(0)
+            if j == 2 and i == 2:
                 best = scores_new
                 worst = scores_new
                 i_b = i
@@ -79,4 +85,4 @@ def manifoldLearning(clf, D, label, kFold, flag):
     else: 
         res = res + utils.prepareResults(best,i_b,j_b,"\nWith Manifold Learning\n*** ISOMAP ***\nBest: ")
         res = res + utils.prepareResults(worst,i_w,j_w,"\nWorst: ")
-    return res 
+    return res
